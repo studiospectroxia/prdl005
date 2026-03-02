@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pareidolia — Join the List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <div id="form-wrap">
+      <p class="eyebrow">Mailing List</p>
+      <h1>Pareidolia</h1>
+      <p class="subtitle">Get early access, event drops &amp; updates — straight to you.</p>
+      <div class="divider"></div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" />
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" placeholder="City, Country" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" placeholder="+1 000 000 0000" />
+      </div>
+
+      <div class="form-group">
+        <label for="insta">Instagram</label>
+        <input type="text" id="insta" placeholder="@handle" />
+      </div>
+
+      <button id="submit-btn" onclick="submitForm()">Join the List</button>
+      <p class="error-msg" id="error-msg"></p>
+    </div>
+
+    <div class="success" id="success">
+      <h2>You're In.</h2>
+      <p>We'll be in touch when it matters.</p>
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
