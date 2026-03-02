@@ -8,7 +8,7 @@ const FIELDS = {
   insta:    'entry.903467826',
 };
 
-async function submitForm() {
+function submitForm() {
   const btn      = document.getElementById('submit-btn');
   const errorMsg = document.getElementById('error-msg');
 
@@ -18,9 +18,8 @@ async function submitForm() {
   const phone    = document.getElementById('phone').value.trim();
   const insta    = document.getElementById('insta').value.trim();
 
-  // Basic validation
-  if (!name || !email) {
-    errorMsg.textContent = 'Name and email are required.';
+  if (!name || !email || !location) {
+    errorMsg.textContent = 'Name, location and email are required.';
     errorMsg.style.display = 'block';
     return;
   }
@@ -29,29 +28,43 @@ async function submitForm() {
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
-  const body = new URLSearchParams({
+  // Build the hidden form and target a hidden iframe
+  // This is the reliable method for Google Forms cross-origin submission
+  const iframe = document.createElement('iframe');
+  iframe.name = 'hidden-submit';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = ENDPOINT;
+  form.target = 'hidden-submit';
+
+  const data = {
     [FIELDS.name]:     name,
     [FIELDS.location]: location,
     [FIELDS.email]:    email,
     [FIELDS.phone]:    phone,
     [FIELDS.insta]:    insta,
-  });
+  };
 
-  try {
-    // no-cors: browser won't return a response, but data submits successfully
-    await fetch(ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body.toString(),
-    });
-  } catch (e) {
-    // Fetch with no-cors throws a TypeError — this is normal, not an error
-    console.log('Submitted (no-cors expected behaviour)');
+  for (const [key, value] of Object.entries(data)) {
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = key;
+    input.value = value;
+    form.appendChild(input);
   }
 
-  // Always show success — no-cors gives no status code to check
-  document.getElementById('form-wrap').style.display = 'none';
-  const success = document.getElementById('success');
-  success.style.display = 'block';
+  document.body.appendChild(form);
+
+  iframe.onload = () => {
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    // cleanup
+    document.body.removeChild(form);
+    document.body.removeChild(iframe);
+  };
+
+  form.submit();
 }

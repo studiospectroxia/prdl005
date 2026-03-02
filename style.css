@@ -1,9 +1,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --purple: #5B00FF;
+  --purple: #7B3FA0;
   --white: #f5f0ff;
-  --muted: rgba(245,240,255,0.45);
+  --muted: rgba(255,255,255,0.6);
 }
 
 html, body {
@@ -40,7 +40,7 @@ body::before {
 
 .eyebrow {
   font-weight: 300;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--muted);
@@ -58,7 +58,7 @@ h1 {
 
 .subtitle {
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--muted);
   margin-bottom: 3rem;
   line-height: 1.6;
@@ -83,7 +83,7 @@ h1 {
 
 label {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -98,7 +98,7 @@ input {
   padding: 0.85rem 1rem;
   color: var(--white);
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 300;
   outline: none;
   transition: border-color 0.2s, background 0.2s;
@@ -151,7 +151,7 @@ button:disabled {
 .success p {
   color: var(--muted);
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .error-msg {
@@ -160,4 +160,12 @@ button:disabled {
   color: #ff6b6b;
   text-align: center;
   display: none;
+}
+
+.optional {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  font-weight: 300;
 }
