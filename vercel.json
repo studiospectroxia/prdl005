@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/everyone-is-an-artist/:path*",
+      "destination": "https://shareandpaint.vercel.app/:path*"
+    },
+    {
+      "source": "/everyone-is-an-artist",
+      "destination": "https://shareandpaint.vercel.app"
+    }
+  ]
+}
